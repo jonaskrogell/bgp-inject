@@ -33,6 +33,10 @@ RUN curl -O http://data.ris.ripe.net/rrc00/latest-bview.gz
 # Only take routes from GTT
 RUN cat latest-bview.gz | /ripencc-bgpdump-a8ca3180d6d4/bgpdump -m - | egrep "^.+\|3257\|" > myroutes.txt
 
+RUN rm latest-bview.gz
+RUN rm -rvf /ripencc-bgpdump-a8ca3180d6d4/
+
+
 ADD https://github.com/xdel/bgpsimple/raw/master/bgp_simple.pl /
 
 
