@@ -26,6 +26,8 @@ RUN curl -O https://bitbucket.org/ripencc/bgpdump/get/1.5.0.zip
 
 RUN unzip 1.5.0.zip && cd ripencc-bgpdump-a8ca3180d6d4/ && sh ./bootstrap.sh && make
 
+RUN rm 1.5.0.zip
+
 RUN curl -O http://data.ris.ripe.net/rrc00/latest-bview.gz
 
 # Only take routes from GTT
