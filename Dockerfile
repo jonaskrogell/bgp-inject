@@ -6,9 +6,8 @@
 # docker run -d --name bgp-injector --restart unless-stopped bgp-inject
 
 
-FROM ubuntu
-
-RUN whoami
+FROM ubuntu:latest
+MAINTAINER Jonas Krogell (jonas@krogell.se)
 
 # install various dependevies
 RUN apt-get update && apt-get install -y \
@@ -21,24 +20,15 @@ RUN apt-get update && apt-get install -y \
   curl
 
 RUN cpanm Net::BGP
-
 RUN curl -O https://bitbucket.org/ripencc/bgpdump/get/1.5.0.zip
-
 RUN unzip 1.5.0.zip && cd ripencc-bgpdump-a8ca3180d6d4/ && sh ./bootstrap.sh && make
-
 RUN rm 1.5.0.zip
 
-RUN curl -O http://data.ris.ripe.net/rrc00/latest-bview.gz
-
 # Only take routes from GTT
-RUN cat latest-bview.gz | /ripencc-bgpdump-a8ca3180d6d4/bgpdump -m - | egrep "^.+\|3257\|" > myroutes.txt
-
-RUN rm latest-bview.gz
+RUN curl http://data.ris.ripe.net/rrc00/latest-bview.gz | /ripencc-bgpdump-a8ca3180d6d4/bgpdump -m - | egrep "^.+\|3257\|" > myroutes.txt
 RUN rm -rvf /ripencc-bgpdump-a8ca3180d6d4/
 
-
 ADD https://github.com/xdel/bgpsimple/raw/master/bgp_simple.pl /
-
 
 # expose the BGP service port
 EXPOSE 179
