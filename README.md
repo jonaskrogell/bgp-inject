@@ -5,4 +5,4 @@ Docker containted script that will inject a copy of a BGP table downloaded from 
 `docker build -t bgp-inject https://github.com/jonaskrogell/bgp-inject`
 
 # Run command
-`docker run -d --name bgp-injector --restart unless-stopped bgp-inject`
+`docker run -d --name bgp-injector --restart unless-stopped -e PEERIP=192.168.200.230 -e ASN=64512 bgp-inject`

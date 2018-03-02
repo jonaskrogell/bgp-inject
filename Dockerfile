@@ -34,4 +34,4 @@ ADD https://github.com/xdel/bgpsimple/raw/master/bgp_simple.pl /
 EXPOSE 179
 
 # run the application
-CMD perl bgp_simple.pl -myas 64512 -myip $(hostname -i) -peeras 64512 -peerip 192.168.200.230 -p myroutes.txt -holdtime 1200
+CMD perl bgp_simple.pl -myas $ASN -myip $(hostname -i) -peeras $ASN -peerip $PEERIP -p myroutes.txt -holdtime 300
