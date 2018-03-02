@@ -1,9 +1,5 @@
 # bgp-injector
 #
-# VERSION               0.0.1
-#
-# start with:
-# docker run -d --name bgp-injector --restart unless-stopped bgp-inject
 
 
 FROM ubuntu:latest
