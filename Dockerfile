@@ -26,8 +26,8 @@ RUN rm -rvf /ripencc-bgpdump-a8ca3180d6d4/
 
 ADD https://github.com/xdel/bgpsimple/raw/master/bgp_simple.pl /
 
-# expose the BGP service port
-EXPOSE 179
+# expose the BGP service port - disabled for now
+# EXPOSE 179
 
 # run the application
-CMD perl bgp_simple.pl -myas $ASN -myip $(hostname -i) -peeras $ASN -peerip $PEERIP -p myroutes.txt -holdtime 300
+CMD perl bgp_simple.pl -myas $ASN -nolisten -peeras $ASN -peerip $PEERIP -p myroutes.txt -holdtime 300
