@@ -2,7 +2,7 @@
 #
 
 
-FROM ubuntu:latest
+FROM ubuntu:16.04
 MAINTAINER Jonas Krogell (jonas@krogell.se)
 
 # install various dependevies
