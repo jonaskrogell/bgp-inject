@@ -5,10 +5,12 @@ FROM ubuntu:18.04
 MAINTAINER Jonas Krogell (jonas@krogell.se)
 
 RUN apt-get update
-RUN apt-get install -y bgpdump curl
+RUN apt-get install -y bgpdump curl perl cpanminus
+RUN cpanm Net::BGP
 
 # Only take routes from GTT
 RUN curl http://data.ris.ripe.net/rrc00/latest-bview.gz | bgpdump -m - | egrep "^.+\|3257\|" > myroutes.txt
+
 
 ADD https://github.com/xdel/bgpsimple/raw/master/bgp_simple.pl /
 
