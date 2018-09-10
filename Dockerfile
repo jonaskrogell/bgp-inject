@@ -5,7 +5,7 @@ FROM ubuntu:18.04
 MAINTAINER Jonas Krogell (jonas@krogell.se)
 
 RUN apt-get update
-RUN apt-get install -y bgpdump curl perl cpanminus make
+RUN apt-get install -y bgpdump curl perl cpanminus make iproute2
 RUN cpanm Net::BGP
 
 # Only take routes from GTT
